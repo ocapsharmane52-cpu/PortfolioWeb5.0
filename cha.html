@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sharmane — Portfolio</title>
+  <meta name="description" content="Sharmane's portfolio — creative web developer focused on accessible, user-friendly digital experiences." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#ffb703; /* warm gold */
+      --accent-2:#5c4033; /* brown tone */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(255,183,3,0.06), transparent 8%),
+                  linear-gradient(180deg,#071029 0%, #071827 40%, #0f1724 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:48px;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:28px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:48px;
+      height:48px;
+      background:linear-gradient(135deg,var(--accent),#ff8a00);
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:#071827;
+      box-shadow:0 6px 20px rgba(0,0,0,0.45), inset 0 -4px 10px rgba(255,255,255,0.06);
+      flex:0 0 48px;
+    }
+    nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:all .18s ease;
+    }
+    nav a:hover, nav a:focus{ color: #fff; transform:translateY(-2px); }
+    .cta{
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      color:#071827;
+      padding:9px 14px;
+      border-radius:12px;
+      font-weight:700;
+      text-decoration:none;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+
+    main{ margin-top:24px; }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.5);
+    }
+
+    .hero-left h1{
+      margin:0 0 8px 0;
+      font-size:2.05rem;
+      color: #fff;
+      letter-spacing:-0.5px;
+    }
+    .hero-left p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:1rem;
+      max-width:56ch;
+    }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      background: linear-gradient(90deg, rgba(255,183,3,0.95), rgba(92,64,51,0.96));
+      color:#071827;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 8px 22px rgba(92,64,51,0.12);
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(255,183,3,0.14);
+      box-shadow:none;
+    }
+    .btn:hover{ transform:translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+
+    /* hero image card */
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:hidden;
+    }
+    .profile{
+      width:108px;
+      height:108px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      flex:0 0 108px;
+    }
+    .profile svg{ width:100%; height:100%; display:block; }
+
+    .hero-info h3{ margin:0 0 6px 0; color:#fff; }
+    .hero-info p{ margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* projects */
+    .section{
+      margin-top:28px;
+    }
+    .section h2{ margin:0 0 16px 0; color:#fff; font-size:1.2rem; }
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.03);
+      transition: transform .18s ease, box-shadow .18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:220px;
+    }
+    .card:hover{ transform: translateY(-8px); box-shadow:0 20px 60px rgba(2,6,23,0.6); }
+    .thumb{
+      height:110px;
+      border-radius:10px;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(255,183,3,0.08), rgba(92,64,51,0.04));
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; filter:contrast(.98) saturate(1.05) }
+    .card h3{ margin:0; font-size:1.05rem; color:#fff; }
+    .card p{ margin:0; color:var(--muted); flex:1 0 auto; }
+
+    .card .meta{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:8px;
+    }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; }
+    .tag{ background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:8px; font-size:.82rem; color:var(--muted) }
+
+    .card .links{ display:flex; gap:8px; }
+    .link-btn{
+      font-weight:700;
+      font-size:.9rem;
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:8px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--accent);
+      border:1px solid rgba(255,183,3,0.07);
+    }
+    .link-btn:hover{ transform:translateY(-4px); }
+
+    /* contact & socials */
+    .contact-row{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px; }
+    .socials{ display:flex; gap:10px; }
+    .socials a{ display:inline-grid; place-items:center; width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--muted); text-decoration:none;}
+    .socials a:hover{ color:#fff; transform:translateY(-4px); }
+
+    footer{ margin-top:36px; text-align:center; color:var(--muted); font-size:.9rem }
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{ grid-template-columns:1fr 320px; }
+      .projects{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width:720px){
+      .hero{ grid-template-columns:1fr; }
+      .projects{ grid-template-columns: 1fr; }
+      header{ gap:8px; flex-direction:column; align-items:flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+    }
+
+    /* small utility */
+    .muted{ color:var(--muted); font-size:.92rem }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header role="banner" aria-label="Site header">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <div class="logo" aria-hidden="true">S</div>
+        <div>
+          <div style="font-weight:700;color:#fff">Sharmane</div>
+          <div style="font-size:.85rem;color:var(--muted)">Creative Web Developer</div>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="mailto:sharmane@email.com">Hire me</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="home" class="hero" aria-labelledby="home-heading">
+        <div class="hero-left">
+          <h1 id="home-heading">Hi, I’m Sharmane — I design delightful web experiences</h1>
+          <p class="lead">I build accessible, responsive interfaces with clean UI, thoughtful interactions, and a focus on usability. I enjoy turning ideas into interactive products that people love to use.</p>
+
+          <div class="hero-actions" role="group" aria-label="Primary actions">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn ghost" href="#contact">Contact</a>
+            <a class="btn" href="#" onclick="openResume(event)">Download Resume</a>
+          </div>
+
+          <div class="muted" style="margin-top:14px">
+            Available for freelance & remote roles • Based in the Philippines
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Profile card">
+          <div class="profile" aria-hidden="true">
+            <!-- inline SVG portrait illustration (scalable image provided) -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svgTitle svgDesc">
+              <title id="svgTitle">Portrait illustration</title>
+              <desc id="svgDesc">Stylized warm portrait illustration with soft shapes and gradient</desc>
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#ffb703" stop-opacity="1" />
+                  <stop offset="1" stop-color="#5c4033" stop-opacity="1" />
+                </linearGradient>
+                <clipPath id="r">
+                  <rect x="0" y="0" width="200" height="200" rx="18" ry="18"/>
+                </clipPath>
+              </defs>
+              <rect width="200" height="200" fill="#071827" rx="18" ry="18"/>
+              <g clip-path="url(#r)">
+                <circle cx="60" cy="70" r="44" fill="#ffe9c8"/>
+                <path d="M20 170 q40-80 120 0" fill="#122233" opacity="0.6" />
+                <rect x="110" y="40" width="68" height="40" rx="10" fill="url(#g1)" opacity="0.15"/>
+                <circle cx="60" cy="70" r="44" fill="url(#g1)" opacity="0.08"/>
+                <!-- simple face features -->
+                <ellipse cx="52" cy="72" rx="5" ry="3" fill="#071827"/>
+                <ellipse cx="68" cy="72" rx="5" ry="3" fill="#071827"/>
+                <path d="M52 86 q8 6 16 0" stroke="#071827" stroke-width="3" fill="none" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="hero-info">
+            <h3>Sharmane</h3>
+            <p>Full-stack web developer — focus on accessible UI, React, and delightful micro-interactions.</p>
+
+            <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+              <a class="btn ghost" href="mailto:sharmane@email.com">Email</a>
+              <a class="btn ghost" href="tel:+639123456789">Call</a>
+            </div>
+
+            <div class="contact-row" style="margin-top:10px;">
+              <div class="socials" aria-label="Social links">
+                <a href="#" title="GitHub" aria-label="GitHub (opens in new tab)" rel="noopener" target="_blank">
+                  <!-- GitHub icon -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.9 5.34.9 11.61c0 4.78 3.1 8.84 7.41 10.28.54.1.73-.24.73-.52 0-.26-.01-1.12-.02-2.04-3.01.66-3.65-1.45-3.65-1.45-.49-1.24-1.2-1.57-1.2-1.57-.98-.66.07-.64.07-.64 1.08.08 1.66 1.12 1.66 1.12.96 1.64 2.51 1.17 3.12.9.1-.7.38-1.17.69-1.44-2.4-.27-4.92-1.2-4.92-5.34 0-1.18.42-2.15 1.11-2.91-.11-.27-.48-1.36.11-2.83 0 0 .92-.29 3.02 1.11a10.5 10.5 0 0 1 5.5 0c2.1-1.4 3.02-1.11 3.02-1.11.59 1.47.22 2.56.11 2.83.69.76 1.11 1.73 1.11 2.91 0 4.16-2.53 5.06-4.94 5.33.39.34.74 1.02.74 2.06 0 1.49-.01 2.69-.01 3.06 0 .29.19.63.74.52 4.3-1.44 7.4-5.5 7.4-10.28C23.1 5.34 18.27.5 12 .5z"/></svg>
+                </a>
+
+                <a href="#" title="LinkedIn" aria-label="LinkedIn (opens in new tab)" rel="noopener" target="_blank">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.6c0-1.34-.03-3.06-1.86-3.06-1.86 0-2.14 1.45-2.14 2.95v5.71h-3.55V9h3.41v1.56h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.34 2.41 4.34 5.54v6.7zM5.34 7.4a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+      </section>
+
+      <section id="projects" class="section" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+
+        <div class="projects" role="list">
+          <article class="card" role="listitem" aria-labelledby="p1">
+            <div class="thumb" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1" alt="screenshot: interactive portfolio" loading="lazy">
+            </div>
+            <h3 id="p1">Interactive Portfolio Website</h3>
+            <p>Modern portfolio with animated micro-interactions, accessible navigation, and an admin-editable project grid. Built with React and progressive enhancement.</p>
+            <div class="meta">
+              <div class="tags">
+                <span class="tag">React</span><span class="tag">Accessibility</span><span class="tag">CSS</span>
+              </div>
+              <div class="links">
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Live demo</a>
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="p2">
+            <div class="thumb" aria-hidden="true">
+              <img src"https://images.unsplash.com/photo-1526378726059-8f6b7e6abf6a?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2" alt="screenshot: student registration form" loading="lazy">
+            </div>
+            <h3 id="p2">Student Registration Form</h3>
+            <p>Dynamic form with validation, multimedia support, and accessible error messaging. Includes CSV export and PDF generation for record-keeping.</p>
+            <div class="meta">
+              <div class="tags">
+                <span class="tag">Vanilla JS</span><span class="tag">Forms</span><span class="tag">WCAG</span>
+              </div>
+              <div class="links">
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Live demo</a>
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" role="listitem" aria-labelledby="p3">
+            <div class="thumb" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3" alt="screenshot: design system" loading="lazy">
+            </div>
+            <h3 id="p3">Design System & Component Library</h3>
+            <p>A reusable component library with tokens and docs to speed up development and ensure consistent UI across projects. Storybook-ready and themeable.</p>
+            <div class="meta">
+              <div class="tags">
+                <span class="tag">Design System</span><span class="tag">Storybook</span>
+              </div>
+              <div class="links">
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Docs</a>
+                <a class="link-btn" href="#" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
+        <p class="muted">I combine design sensibility and engineering rigor to craft interfaces that are both beautiful and usable. I enjoy mentoring junior devs, improving accessibility workflows, and building inclusive products.</p>
+      </section>
+
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
+        <p class="muted">Email, call, or connect on GitHub/LinkedIn. Prefer using email for project details — I usually reply within 24–48 hours.</p>
+
+        <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+          <a class="btn" href="mailto:sharmane@email.com">Email Me</a>
+          <a class="btn ghost" href="tel:+639123456789">Call</a>
+          <a class="btn ghost" href="#" onclick="openContactForm(event)">Contact form</a>
+        </div>
+      </section>
+
+      <footer>
+        © 2026 Sharmane • Built with care • <span class="muted">Made accessible & responsive</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Small JS to demo clickable actions (no external services)
+    function openResume(e){
+      e.preventDefault();
+      // In a real site you'd point this to a PDF or file path.
+      alert('Resume download would start (replace this with a real resume link).');
+    }
+    function openContactForm(e){
+      e.preventDefault();
+      // Simple accessible modal could be implemented here. For demo, open mailto.
+      window.location.href = 'mailto:sharmane@email.com?subject=Inquiry%20from%20Portfolio';
+    }
+
+    // Keyboard shortcut: "g" to go to projects quickly (demo)
+    window.addEventListener('keydown', function(e){
+      if(e.key === 'g' && !/input|textarea/i.test(document.activeElement.tagName)){
+        document.getElementById('projects').scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  </script>
+</body>
+</html>
